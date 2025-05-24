@@ -1,0 +1,62 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--champagne);
+  color: var(--ink-black);
+  font-family: var(--font-main);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+button {
+  background: var(--rose-petal);
+  color: var(--ink-black);
+  border: 1px solid var(--golden-hint);
+  box-shadow: 0 2px 6px rgb(255, 255, 255);
+  transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+  background: var(--golden-hint);
+  color: var(--champagne);
+  box-shadow: 0 0 12px var(--golden-hint);
+}
+
+.card {
+  background: var(--powder-blue);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgb(255, 255, 255);
+  border: 1px solid var(--golden-hint);
+  max-width: 480px;
+  margin: 2rem auto;
+}
+
+
+:root {
+  --rose-petal: #f7d6e0;
+  --powder-blue: #c9d6ea;
+  --champagne: #fef6e4;
+  --golden-hint: #decaa7;
+  --ink-black: #2e2e2e;
+  --font-main: 'Special Elite', 'Courier New', monospace;
+}
+
+input, button {
+  border: none;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: var(--font-main);
+  margin-bottom: 1rem;
+}
+
+input {
+  background: var(--powder-blue);
+  color: var(--ink-black);
+  border: 1px solid var(--golden-hint);
+  box-shadow: 0 0 4px var(--golden-hint);
+}
