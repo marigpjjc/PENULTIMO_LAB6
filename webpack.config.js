@@ -28,7 +28,7 @@ export default {
     ],
   },
   devServer: {
-    port: 8083,
+    port: 8085,
     static: {
       directory: path.join(__dirname, 'public'),
     },

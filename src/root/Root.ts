@@ -1,8 +1,5 @@
 import "../components/login-form";
 import "../components/signup-form";
-import "../components/add-task";
-import "../components/bottom-task";
-import "../components/task-status";
 import "../pages/start-page";
 import "../pages/error-page";
 import "../pages/task-page";
@@ -46,19 +43,19 @@ class RootApp extends HTMLElement {
     const content = this.shadowRoot!.getElementById("content")!;
     switch (path) {
       case "/":
-        content.innerHTML = `<main-page></main-page>`;
+        content.innerHTML = `<start-page></start-page>`;
         break;
       case "/login":
-        content.innerHTML = `<glitchy-login></glitchy-login>`;
+        content.innerHTML = `<login-form></login-form>`;
         break;
       case "/register":
-        content.innerHTML = `<neon-register></neon-register>`;
+        content.innerHTML = `<signup-form></signup-form>`;
         break;
       case "/tasks":
         content.innerHTML = `<tasks-page></tasks-page>`;
         break;
       default:
-        content.innerHTML = `<neon-404></neon-404>`;
+        content.innerHTML = `<error-page></error-page>`;
     }
   }
 

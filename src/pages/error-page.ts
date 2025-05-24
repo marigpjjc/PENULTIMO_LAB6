@@ -78,12 +78,11 @@ class ErrorPage extends HTMLElement {
 </style>
 
 <div class="container">
-  <div class="glitch">404</div>
-  <div class="message">¡Ups! Página no encontrada :cc</div>
-  <div class="info">Parece que esta dirección no existe o fue eliminada ja ja ja.</div>
+  <div class="error">error</div>
+  <div class="message">Página no encontrada :cc</div>
+  <div class="info">Parece que esta dirección no existe o fue eliminada</div>
   <button id="goHome">Ir al inicio</button>
 </div>
-
     `;
   }
 

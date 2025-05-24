@@ -28,185 +28,278 @@ class TasksPage extends HTMLElement {
 
   private render() {
     this.shadowRoot!.innerHTML = `
-      <style>
-  :host {
-    --bg: #fff0f6;
-    --text: #5e3366;
-    --card-bg: #fbe4ff;
-    --accent: #e7b9d9;
-    --accent-dark: #d88abf;
-    --warning: #ffc2d1;
-    --success: #d6ffe0;
-    --danger: #ff9aa2;
-    font-family: 'Cormorant Garamond', serif;
-    display: block;
-  }
+     <style>
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-  .container {
-    padding: 2rem;
-    color: var(--text);
-    background: var(--bg);
-    min-height: 100vh;
-  }
+:host {
+  --retro-pink-light: #ffb6c1;
+  --retro-pink-dark: #d1477f;
+  --retro-bg: #ffe4f0;
+  --retro-card-bg: #ffdaf0;
+  --retro-text-dark: #5b2245;
+  --retro-text-light: #fff0f6;
+  --retro-accent: #f46ea6;
 
-  .top-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-  }
+  font-family: 'Press Start 2P', cursive;
+  display: block;
+  background: var(--retro-bg);
+  min-height: 100vh;
+  padding: 2rem;
+  box-sizing: border-box;
+  color: var(--retro-text-dark);
+}
 
-  .top-bar h1 {
-    color: var(--accent-dark);
-    margin: 0;
-    font-size: 2.5rem;
-  }
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: var(--retro-card-bg);
+  padding: 2rem;
+  border: 8px double var(--retro-pink-dark);
+  border-radius: 20px;
+  box-shadow:
+    inset 0 0 10px var(--retro-pink-dark),
+    0 0 20px var(--retro-pink-light);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 
-  button {
-    background: var(--accent);
-    color: #fff;
-    border: none;
-    padding: 0.6rem 1.4rem;
-    border-radius: 999px;
-    cursor: pointer;
-    font-weight: bold;
-    font-family: inherit;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-  }
+.top-bar {
+  grid-column: 1 / -1;
+  background: var(--retro-pink-dark);
+  padding: 1.5rem 2rem;
+  border-radius: 15px;
+  box-shadow: 0 0 15px var(--retro-pink-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--retro-text-light);
+  font-size: 1rem;
+  text-shadow: 2px 2px 4px #a23168;
+  letter-spacing: 1px;
+  font-family: 'Press Start 2P', cursive;
+  gap: 10.3rem;
+}
 
-  button:hover {
-    background: var(--accent-dark);
-    transform: translateY(-2px);
-  }
+button {
+  background: transparent;
+  color: var(--retro-accent);
+  border: 3px solid var(--retro-pink-dark);
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9rem;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow:
+    0 0 5px var(--retro-pink-dark),
+    inset 0 0 10px var(--retro-pink-light);
+  transition: 0.3s ease all;
+  font-family: 'Press Start 2P', cursive;
+}
 
-  #logout-btn {
-    background: transparent;
-    border: 2px solid var(--accent);
-    color: var(--accent-dark);
-  }
+button:hover {
+  background: var(--retro-pink-dark);
+  color: var(--retro-text-light);
+  box-shadow:
+    0 0 15px var(--retro-pink-light),
+    inset 0 0 20px var(--retro-pink-light);
+  transform: scale(1.05) rotate(-2deg);
+}
 
-  .tasks {
-    display: grid;
-    gap: 2rem;
-  }
+#logout-btn {
+  border-color: var(--retro-accent);
+  color: var(--retro-accent);
+  box-shadow: 0 0 8px var(--retro-accent);
+}
 
-  .section {
-    background: var(--card-bg);
-    padding: 1.5rem;
-    border-radius: 20px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-  }
+#logout-btn:hover {
+  background: var(--retro-accent);
+  color: var(--retro-text-light);
+  box-shadow: 0 0 15px var(--retro-accent);
+}
 
-  .section h2 {
-    margin-top: 0;
-    color: var(--accent-dark);
-    font-size: 1.8rem;
-  }
+.tasks {
+  display: grid;
+  gap: 2.3rem;
+  width: 800px;
+}
 
-  .list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
+.section {
+  background: var(--retro-bg);
+  border: 4px dotted var(--retro-pink-dark);
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: inset 3px 3px 8px #ffd3ec, inset -3px -3px 8px #ffabe1;
+  display: flex;
+  flex-direction: column;
+  min-height: 300px;
+}
 
-  .list li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #fcdff0;
-    margin-bottom: 0.7rem;
-    padding: 0.9rem 1.2rem;
-    border-radius: 16px;
-    box-shadow: inset 0 0 0.5px #ffebf5;
-  }
+.section h2 {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1rem;
+  color: var(--retro-pink-dark);
+  text-align: center;
+  margin-bottom: 1.5rem;
+  text-shadow: 1px 1px 2px #a23168;
+}
 
-  .list li.done {
-    opacity: 0.6;
-    text-decoration: line-through;
-  }
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+  flex-grow: 1;
+}
 
-  .actions {
-    display: flex;
-    gap: 0.6rem;
-  }
+.list li {
+  background: linear-gradient(135deg, #ffafd4 0%, #ffcce3 100%);
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow:
+    3px 3px 5px #c85b82,
+    inset 0 0 8px #fff0f6;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.8rem;
+  color: var(--retro-text-dark);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid var(--retro-pink-dark);
+  transition: background 0.3s ease;
+  cursor: pointer;
+}
 
-  .actions button {
-    background: none;
-    border: none;
-    color: var(--text);
-    font-size: 1.3rem;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-  }
+.list li:hover {
+  background: linear-gradient(135deg, #f993c0 0%, #ffb6d1 100%);
+  box-shadow:
+    0 0 15px #ff8cc1,
+    inset 0 0 10px #ffd3ec;
+}
 
-  .actions button:hover {
-    transform: scale(1.3);
-  }
+.list li.done {
+  filter: grayscale(70%) contrast(0.8);
+  text-decoration: line-through;
+  opacity: 0.7;
+  cursor: default;
+}
 
-  .empty {
-    color: #a68dad;
-    text-align: center;
-    font-style: italic;
-    font-size: 1rem;
-  }
+.actions {
+  display: flex;
+  gap: 0.7rem;
+}
 
-  .modal {
-    position: fixed;
-    inset: 0;
-    background: rgba(255, 229, 246, 0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-  }
+.actions button {
+  background: var(--retro-pink-dark);
+  border-radius: 6px;
+  border: none;
+  color: var(--retro-text-light);
+  font-size: 0.9rem;
+  padding: 0.5rem 0.8rem;
+  box-shadow:
+    0 0 5px #ff8cc1,
+    inset 0 0 8px #ffbad1;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.actions button:hover {
+  transform: scale(1.2) rotate(-8deg);
+  box-shadow:
+    0 0 15px #ff8cc1,
+    inset 0 0 12px #ffbad1;
+}
+
+.empty {
+  color: var(--retro-pink-dark);
+  font-style: italic;
+  font-size: 0.7rem;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 182, 193, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
 
 .modal-box {
-  background: #ffe3f1;
+  background: var(--retro-card-bg);
+  border: 5px dotted var(--retro-pink-dark);
+  border-radius: 25px;
   padding: 2rem;
-  border-radius: 16px;
-  width: 100%;
-  max-width: 360px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-  color: var(--text);
+  max-width: 400px;
+  width: 90%;
+  box-shadow:
+    0 0 25px var(--retro-pink-light),
+    inset 0 0 20px #ffb6c1;
+  color: var(--retro-pink-dark);
+  font-family: 'Press Start 2P', cursive;
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
   position: relative;
-  border: 2px solid var(--accent);
 }
 
+.modal-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 2px dashed var(--retro-pink-dark);
+  padding-bottom: 0.5rem;
+}
 
-  .modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+.modal-header h2 {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1rem;
+  color: var(--retro-pink-dark);
+  text-shadow: 1px 1px 2px #a23168;
+  margin: 0;
+}
 
-  .modal-header h2 {
-    margin: 0;
-    color: var(--accent-dark);
-  }
+.close {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--retro-pink-dark);
+  cursor: pointer;
+  text-shadow: 0 0 10px #ff77aa;
+  transition: color 0.3s ease;
+}
 
-  .close {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    color: violet;
-    cursor: pointer;
-  }
+.close:hover {
+  color: var(--retro-pink-light);
+}
 
-  input {
-    width: calc(100% - 1rem);
-    margin-bottom: 1rem;
-    padding: 0.6rem;
-    border: 2px solid var(--accent);
-    border-radius: 10px;
-    background: #fffafc;
-    color: var(--text);
-    font-size: 1rem;
-    font-family: inherit;
-  }
+input {
+  width: 90%;
+  padding: 0.8rem 1rem;
+  border: 3px double var(--retro-pink-dark);
+  border-radius: 15px;
+  background: var(--retro-bg);
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.7rem;
+  color: var(--retro-pink-dark);
+  box-shadow:
+    inset 1px 1px 5px #fff0f6,
+    0 0 8px var(--retro-pink-light);
+  outline: none;
+  transition: box-shadow 0.3s ease;
+}
+
+input:focus {
+  box-shadow:
+    0 0 12px var(--retro-pink-dark),
+    inset 0 0 15px var(--retro-pink-light);
+}
 </style>
 
 
@@ -316,11 +409,9 @@ class TasksPage extends HTMLElement {
       <div class="modal-box">
         <div class="modal-header">
           <h2>Nueva tarea</h2>
-          <button class="close">x</button>
         </div>
-        <input id="title" placeholder="Ponle un nombrecito" required />
-        <input id="desc" placeholder="Agrega una descripcion si quieres" />
-        <div style="text-align:right">
+        <input id="title" placeholder="Escribe tu tarea" required />
+        <div style="text-align:center">
           <button id="cancel">Cancelar</button>
           <button id="save">Guardar</button>
         </div>
@@ -328,15 +419,12 @@ class TasksPage extends HTMLElement {
     `;
     this.shadowRoot!.appendChild(modal);
 
-    modal.querySelector(".close")!.addEventListener("click", () => modal.remove());
     modal.querySelector("#cancel")!.addEventListener("click", () => modal.remove());
-
     modal.querySelector("#save")!.addEventListener("click", async () => {
       const title = (modal.querySelector("#title")! as HTMLInputElement).value.trim();
-      const desc  = (modal.querySelector("#desc")!  as HTMLInputElement).value.trim();
-      if (!title) return alert("El título es obligatorio");
+      if (!title) return alert("El campo es obligatorio");
       const uid = localStorage.getItem("userId")!;
-      await svcAddTask({ userId: uid, title, description: desc, status: "todo" });
+      await svcAddTask({ userId: uid, title, completed: "", description: "", status: "todo" });
       modal.remove();
     });
   }

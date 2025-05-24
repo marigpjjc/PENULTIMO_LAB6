@@ -11,108 +11,120 @@ class StartPage extends HTMLElement {
     this.handleAuth();
   }
 
-  private renderSkeleton() {
-    this.shadowRoot!.innerHTML = `
-      <style>
-  @import url("https://fonts.googleapis.com/css2?family=Special+Elite&display=swap");
+private renderSkeleton() {
+  this.shadowRoot!.innerHTML = `
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-  :host {
-    display: block;
-    font-family: 'Special Elite', 'Courier New', monospace;
-    --bg-color: #fdeef4;
-    --soft-pink: #f4c2c2;
-    --soft-purple: #d8b4dd;
-    --text-light: #5a2a2a;
-    --text-muted: #a87e8e;
-    --card-bg: #f9e7ee;
-    --btn-radius: 30px;
-  }
+      :host {
+        display: block;
+        font-family: 'Press Start 2P', cursive;
+        --retro-pink-light: #f9c4d2;
+        --retro-pink-dark: #d13f7c;
+        --retro-purple: #a86ecf;
+        --retro-bg: #fff0f5;
+        --retro-card: #ffe6f0;
+        --retro-shadow: #a23168;
+        --retro-border: #d88db1;
+      }
 
-  .container {
-    padding: 50px 20px;
-    max-width: 900px;
-    margin: auto;
-    text-align: center;
-    background: var(--bg-color);
-    min-height: 100vh;
-  }
+      .container {
+        padding: 60px 20px;
+        max-width: 880px;
+        margin: auto;
+        min-height: 100vh;
+        background: var(--retro-bg);
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
 
-  .auth-box {
-    background: var(--card-bg);
-    border: 2px solid var(--soft-purple);
-    border-radius: 16px;
-    padding: 40px 30px;
-    box-shadow: 0 0 15px var(--soft-pink);
-    animation: fadeIn 1s ease-in;
-  }
+      .auth-box {
+        background: var(--retro-card);
+        border: 4px solid var(--retro-border);
+        border-radius: 18px;
+        padding: 60px 40px;
+        box-shadow: 0 0 20px var(--retro-shadow);
+        animation: fadeIn 0.9s ease-in-out;
+      }
 
-  h1 {
-    font-size: 2.8rem;
-    color: var(--soft-purple);
-  }
+      h1 {
+        font-size: 1.8rem;
+        color: var(--retro-pink-dark);
+        text-shadow: 2px 2px var(--retro-shadow);
+        margin-bottom: 20px;
+      }
 
-  p {
-    color: var(--text-muted);
-    font-size: 1.1rem;
-    margin: 20px 0;
-  }
+      p {
+        color: var(--retro-purple);
+        font-size: 0.85rem;
+        margin: 12px 0;
+        text-shadow: 1px 1px var(--retro-border);
+      }
 
-  .actions {
-    margin-top: 30px;
-    display: flex;
-    justify-content: center;
-    gap: 35px;
-    flex-wrap: wrap;
-  }
+      .actions {
+        margin-top: 40px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 40px;
+        flex-wrap: wrap;
+      }
 
-  button {
-    font-size: 1rem;
-    padding: 14px 28px;
-    border-radius: var(--btn-radius);
-    border: none;
-    cursor: pointer;
-    color: #5a2a2a;
-    background: var(--soft-purple);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
+      button {
+        font-family: 'Press Start 2P', cursive;
+        font-size: 0.7rem;
+        padding: 18px 28px;
+        background: var(--retro-pink-dark);
+        color: #fff;
+        border: 3px solid var(--retro-shadow);
+        border-radius: 12px;
+        cursor: pointer;
+        box-shadow: 2px 2px 0 var(--retro-shadow);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
 
-  button:hover {
-    transform: translateY(-4px);
-  }
+      button:hover {
+        transform: translateY(-5px);
+        box-shadow: 4px 4px 0 var(--retro-shadow);
+        background: #b02f69;
+      }
 
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(15px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
 
-  @media (max-width: 600px) {
-    h1 {
-      font-size: 2rem;
-    }
+      @media (max-width: 600px) {
+        h1 {
+          font-size: 1.3rem;
+        }
 
-    .actions {
-      flex-direction: column;
-      gap: 15px;
-    }
+        .actions {
+          flex-direction: column;
+          gap: 20px;
+        }
 
-    button {
-      width: 100%;
-      max-width: 250px;
-    }
-  }
-</style>
+        button {
+          width: 100%;
+          max-width: 240px;
+        }
+      }
+    </style>
 
-<div class="container">
-  <!-- contenido dinámico -->
-</div>
-    `;
-  }
+    <div class="container">
+      <!-- contenido dinámico -->
+    </div>
+  `;
+}
+
 
   private handleAuth() {
     onAuthChange(user => {

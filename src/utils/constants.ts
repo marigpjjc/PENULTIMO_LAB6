@@ -1,12 +1,10 @@
 export const TASK_STATUS = {
   TODO: "todo" as const,
-  IN_PROGRESS: "in-progress" as const,
   COMPLETED: "completed" as const,
 };
 
 export const TASK_STATUS_TEXT = {
   [TASK_STATUS.TODO]: "Por hacer",
-  [TASK_STATUS.IN_PROGRESS]: "En progreso",
   [TASK_STATUS.COMPLETED]: "Completada",
 };
 

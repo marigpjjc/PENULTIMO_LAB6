@@ -33,8 +33,6 @@ export async function addTask(
     return null;
   }
 }
-
-
  
 export async function getTasksByUserId(
   userId: string
@@ -55,7 +53,6 @@ export async function getTasksByUserId(
   }
 }
 
-
 export function subscribeTasksByUser(
   userId: string,
   callback: (tasks: TaskType[]) => void
@@ -75,7 +72,6 @@ export function subscribeTasksByUser(
   });
   return unsub;
 }
-
 
 export async function updateTask(
   id: string,

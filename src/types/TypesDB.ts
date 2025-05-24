@@ -7,6 +7,7 @@ export type UserType = {
 };
 
 export type TaskType = {
+  completed: any;
   id: string;
   userId: string;
   title: string;
